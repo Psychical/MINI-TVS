@@ -1,0 +1,2 @@
+CREATE TABLE `unban_order_prvilegies` ( `id` int(11) NOT NULL auto_increment, `priv` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, PRIMARY KEY  (`id`) ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+INSERT INTO `unban_order_prvilegies` VALUES ('1', 'bt', 'vip');

@@ -1,0 +1,3 @@
+CREATE TABLE `unban_messages_types` ( `id` int(11) NOT NULL auto_increment, `type` varchar(255) character set utf8 collate utf8_lithuanian_ci NOT NULL, `page_content` text character set utf8 collate utf8_lithuanian_ci NOT NULL, `lang` varchar(11) NOT NULL, PRIMARY KEY  (`id`) ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+INSERT INTO `unban_messages_types` VALUES ('1', 'unban', '', 'lt');
+INSERT INTO `unban_messages_types` VALUES ('2', 'vip', 'Siuskite zinute su tekstu %key% %ip% numeriu %nr%. Kaina %time%d/%price% %price_type% Kai nusiusite SMS zinute iskart po atsakymo VIP bus automatiskai aktivuotas!', 'lt');

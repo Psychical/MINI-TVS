@@ -1,0 +1,55 @@
+body
+{
+	background: #ededed;
+}
+
+.main
+{
+	width: 800px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+div.left
+{
+	width: 245px;
+	float: left;
+}
+
+div.right {
+	width: 545px;
+	float: right;
+}
+
+div.countrys {
+	padding: 10px;
+}
+
+div.countrys a {
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	text-decoration: none;
+}
+
+div.countrys a:hover {
+	opacity: 1.0;
+	filter: alpha (opacity=100);
+}
+
+div.footers {
+	margin-top: -10px;
+	padding: 5px;
+}
+
+div.content {
+	padding: 10px;
+}
+
+.margin {
+	margin-top: -10px;
+}
+
+.red {
+	color: red;
+	font-weight: bold;
+}

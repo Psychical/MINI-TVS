@@ -1,0 +1,41 @@
+body {
+	background: #F8F8F8;
+}
+
+.main-table td {
+	width: 50%;
+}
+
+.settings-list td {
+	width: 50%;
+}
+
+.servers-list td {
+	vertical-align: middle;
+}
+
+.admin {
+	width: 142px;
+	height: 142px;
+	background: #f9f9f9;
+	-webkit-box-shadow: inset 0px 0px 15px 1px rgba(0,0,0,0.14);
+	-moz-box-shadow: inset 0px 0px 15px 1px rgba(0,0,0,0.14);
+	box-shadow: inset 0px 0px 15px 1px rgba(0,0,0,0.14);
+	padding-top: 21px;
+	float: left;
+	margin-right: 10px;
+}
+
+.admin:hover {
+	background: #f0f0f0;
+}
+
+.list-ip tr {
+	border-top: 1px solid #dddddd;
+}
+
+.admin img {
+	width: 80px;
+	height: 80px;
+	text-decoration: none;
+}

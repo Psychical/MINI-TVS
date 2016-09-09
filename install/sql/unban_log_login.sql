@@ -1,0 +1,1 @@
+CREATE TABLE `unban_log_login` ( `id` int(11) NOT NULL auto_increment, `ip` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `date` varchar(255) NOT NULL, PRIMARY KEY  (`id`) ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;

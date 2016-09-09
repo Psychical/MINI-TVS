@@ -1,0 +1,1 @@
+ALTER TABLE  `unban_config` ADD  `amxbans_prefix` VARCHAR( 11 ) NOT NULL;
