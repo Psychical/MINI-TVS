@@ -42,72 +42,24 @@ if($makro_type == 1)
 	if(!$result->num_rows)
 		echo $unban['32'];
 		
-	if($result->num_rows > 0)
-	{
-		echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>';
-		echo 
-<<<EOD
-		<script>
-		$(document).ready(function()
-		{
-			$('input').bind("change keyup", function()
-			{
-				var str = $('#nick').val();
-				
-				if(/^[a-zA-Z0-9-]*$/.test(str) == false)
-				{
-					$('#nick').val("" + str.substring(0, str.length - 1) + "");
-				}
-				
-				var str = $('#pass').val();
-				if(/^[a-zA-Z0-9-#]*$/.test(str) == false)
-				{
-					$('#pass').val("" + str.substring(0, str.length - 1) + "");
-				}
-			});
+	if($result->num_rows > 0): ?>
+		<form action="./pay/makro/index.php" method="POST">
+			<?php echo $unban['32']; ?>
+			<input type="text" class="form-control" placeholder="Nickname, IP or SteamID" name="username" style="width: 150px; display: none;" max="32">
+			<input type="password" class="form-control" placeholder="Password (only for Nickname)" name="pass" style="width: 150px; display: none;" max="32">
+			<?php echo $unban['33']; ?>
+			<select name='buy' class='form-control' style='width: 130px;'>
+				<?php while($row = $result->fetch_object()): $row->price /= 100; ?>
 			
-			$("input[name=type]").change(function()
-			{
-				if($("input:radio[name=type]:checked").val() == 'IP')
-				{
-					$("#ip").css("display", "block");
-					$("#nick").css("display", "none");
-					$("#pass").css("display", "none");
-				}
-				else
-				{
-					$("#ip").css("display", "none");
-					$("#nick").css("display", "block");
-					$("#pass").css("display", "block");
-				}
-			});
-		});
-		
-		</script>
-EOD;
-		echo '<form action="./pay/makro/index.php" method="POST">';
-		echo $unban['32'];
-		echo '<input type="radio" name="type" value="IP" checked>IP/NICK<input type="radio" name="type" value="NAME"><br />';
-		echo '<input type="text" class="form-control" placeholder="'.$ip.'" id="ip" style="width: 130px; display: block;" disabled>';
-		echo '<input type="text" class="form-control" placeholder="Nickname" id="nick" name="nick" style="width: 130px; display: none;" max="32">';
-		echo '<input type="password" class="form-control" placeholder="Password" id="pass" name="pass" style="width: 130px; display: none;" max="32">';
-		echo $unban['33'];
-		echo "<select name='buy' class='form-control' style='width: 130px;'>";
-		
-		while($row = $result->fetch_object())
-		{
-			$row->price /= 100;
-			echo "<option value='".$row->id."'>".$row->lenght."d. - ".$row->price.$unban['35']."</option>";
-		}
-		
-		echo "</select>";
-		echo "<br />";
-		echo "<input type='submit' class='btn btn-default' name='submit' value='".$unban['34']."' />";
-		echo "</form>";
-	}
-	else
+					<option value="<?php echo $row->id; ?>"><?php echo $row->lenght; ?>d. - <?php echo $row->price.$unban['35']; ?></option>
+				<?php endwhile; ?>
+			</select>
+			<br />
+			<input type='submit' class='btn btn-default' name='submit' value='<?php echo $unban['34']; ?>' />";
+		</form>
+	<?php else:
 		echo $unban['31'];
-	
+	endif;
 	$result->close();
 }
 	

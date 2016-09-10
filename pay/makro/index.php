@@ -8,8 +8,8 @@
 		include('../../config/db_connect.php');
 		require_once('WebToPay.php');
 		
-		$id = $_POST['buy'];
-		$orderid = ($_POST['type'] == "IP") ? $_SERVER['REMOTE_ADDR'] : $_POST['nick'];
+		$id = (int) $_POST['buy'];
+		$orderid = $_POST['username'];
 		
 		$result = $mysqli->query("SELECT * FROM `unban_makro_types` WHERE `id` = '".$id."'");
 		
