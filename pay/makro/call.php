@@ -29,7 +29,7 @@ try
 		}
 		else
 		{
-			$mysqli_amx->query("INSERT INTO ".$amxbans_prefix."_amxadmins (`username`, `access`, `flags`, `nickname`, `ashow`, `created`, `expired`, `days`, `steamid`) VALUES ('".$clientIp."', '".get_acces_makro($mysqli, $clientPrivileges)."', '".$flags."', '".$clientIp."', '0', '".time()."', '".$expired."', '".$ftc->lenght."', '".$clientIp."') ");
+			$mysqli_amx->query("INSERT INTO ".$amxbans_prefix."_amxadmins (`username`, `passoword`, `access`, `flags`, `nickname`, `ashow`, `created`, `expired`, `days`, `steamid`) VALUES ('".$clientIp."', '".$clientPassword."', '".get_acces_makro($mysqli, $clientPrivileges)."', '".$flags."', '".$clientIp."', '0', '".time()."', '".$expired."', '".$ftc->lenght."', '".$clientIp."') ");
 			$lastid = $mysqli_amx->insert_id;
 			
 			echo 'OK Privilegijos uzsakytos.';
