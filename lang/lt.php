@@ -1,5 +1,5 @@
 <?php
-$unban['18'] = "Pasirinkite &#353;al&#303;:";
+$unban['18'] = "&#353;al&#303;:";
 
 //Pirmasis menu
 $unban['1'] = "Viso Ban&#371;:";

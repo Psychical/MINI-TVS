@@ -1,5 +1,5 @@
 <?php
-$unban['18'] = "Choose Language:";
+$unban['18'] = "Country:";
 
 //First menu
 $unban['1'] = "All Bans:";
