@@ -45,8 +45,8 @@ if($makro_type == 1)
 	if($result->num_rows > 0): ?>
 		<form action="./pay/makro/index.php" method="POST">
 			<?php echo $unban['32']; ?>
-			<input type="text" class="form-control" placeholder="Nickname, IP or SteamID" name="username" style="width: 150px; display: none;" max="32">
-			<input type="password" class="form-control" placeholder="Password (only for Nickname)" name="pass" style="width: 150px; display: none;" max="32">
+			<input type="text" class="form-control" placeholder="Nickname, IP or SteamID" name="username" style="width: 150px;" max="32">
+			<input type="password" class="form-control" placeholder="Password (only for Nickname)" name="pass" style="width: 150px;" max="32">
 			<?php echo $unban['33']; ?>
 			<select name='buy' class='form-control' style='width: 130px;'>
 				<?php while($row = $result->fetch_object()): $row->price /= 100; ?>
@@ -55,7 +55,7 @@ if($makro_type == 1)
 				<?php endwhile; ?>
 			</select>
 			<br />
-			<input type='submit' class='btn btn-default' name='submit' value='<?php echo $unban['34']; ?>' />";
+			<input type='submit' class='btn btn-default' name='submit' value='<?php echo $unban['34']; ?>' />
 		</form>
 	<?php else:
 		echo $unban['31'];
