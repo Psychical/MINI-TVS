@@ -12,7 +12,7 @@ $unban['6'] = "Not Banned";
 //Priv Order
 $unban['30'] = "<u>Purchase via <b>SMS:</b></u> <br />";
 $unban['31'] = "Service not available";
-$unban['32'] = "<u>Other <b>payment</b> types:</u> <br />";
+$unban['32'] = "<u>Other <b>payment</b> methods:</u> <br />";
 $unban['33'] = "Select time period:<br/>";
 $unban['34'] = "Pay";
 $unban['35'] = "EUR";
@@ -22,4 +22,6 @@ $unban['unban_mokejimai'] = "If you want to buy unban, send sms with text: <font
 $unban['unban_vpsnet'] = "If you want to buy unban, send sms with text: <font color='red'><b>%s %s </b></font>number <font color='red'><b>%d</b></font> price <b>%s %s</b>";
 
 $unban['have_priv'] = "You already have privileges!";
+$unban['other_payments'] = "Other payment methods:";
+$unban['other_payments_pay'] = "PAY";
 ?>

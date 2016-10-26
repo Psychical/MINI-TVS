@@ -1,5 +1,6 @@
 <html> 
 	<head>
+		<meta charset="UTf-8" />
 	</head>
 <body> 
 <?php 
@@ -12,7 +13,7 @@ if(!isset($_POST['submit']))
 		<input type="hidden" name="ip" value="<?php echo $ip; ?>"/> 
 	</div> 
 	<div> 
-		Kiti mokejimo budai: <input type="submit" name="submit" value="Moketi" /> 
+		<?php echo $unban['other_payments']; ?> <input class="btn btn-success" style="padding: 5px 10px ;" type="submit" name="submit" value="<?php echo $unban['other_payments_pay']; ?>" /> 
 	</div> 
 	</form>
 	<?php

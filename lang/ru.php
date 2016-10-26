@@ -22,4 +22,7 @@ $unban['unban_mokejimai'] = "Если вы хотите, чтобы разбло
 $unban['unban_vpsnet'] = "Если вы хотите, чтобы разблокировать ваш пользователь,  Txt: <font color='red'><b>%s %s </b></font>номер <font color='red'><b>%d</b></font> цена <b>%s %s</b>";
  
 $unban['have_priv'] = "Вы уже подписаны на привилегии, тех пор, пока они не закончатся, вы не можете заказать другое.";
+$unban['other_payments'] = "Другие способы оплаты:";
+$unban['other_payments_pay'] = "платить";
+
 ?>

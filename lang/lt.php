@@ -1,5 +1,5 @@
 <?php
-$unban['18'] = "&#353;al&#303;:";
+$unban['18'] = "&#352;alis:";
 
 //Pirmasis menu
 $unban['1'] = "Viso Ban&#371;:";
@@ -22,4 +22,6 @@ $unban['unban_mokejimai'] = "Jeigu nori atsibaninti, siusk sms su tekstu: <font 
 $unban['unban_vpsnet'] = "Jeigu nori atsibaninti, siusk sms su tekstu: <font color='red'><b>%s %s </b></font>numeriu <font color='red'><b>%d</b></font> kaina <b>%s %s</b>";
 
 $unban['have_priv'] = "J&#363;s jau esate u&#382;sisak&#281;s privilegijas, kol jos nesibaigs, negalite u&#382;sisakyti kitos.";
+$unban['other_payments'] = "Kiti mokėjimo būdai:";
+$unban['other_payments_pay'] = "MOKĖTI";
 ?>

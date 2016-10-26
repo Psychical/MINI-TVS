@@ -31,12 +31,10 @@
 				echo "No SMS services from your country!";
 			}
 				
-			if($makro_type)
-			{
-				echo "<br /><br />";
-				include('./makro_pay/unban.php');
-			}
-			echo "<br /><br /><br />";
+			if($makro_type): ?>
+				<hr />
+				<?php include('./makro_pay/unban.php'); 
+			endif;
 		}
 	}
 ?>
