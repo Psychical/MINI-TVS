@@ -44,9 +44,10 @@ if($makro_type == 1)
 		
 	if($result->num_rows > 0): ?>
 		<form action="./pay/makro/index.php" method="POST">
+			
 			<?php echo $unban['32']; ?>
-			<input type="text" class="form-control" placeholder="Nickname, IP or SteamID" name="username" style="width: 150px;" max="32">
-			<input type="password" class="form-control" placeholder="Password (only for Nickname)" name="pass" style="width: 150px;" max="32">
+			<input type="text" class="form-control" placeholder="Nickname, IP or SteamID" name="username" max="32">
+			<input type="password" class="form-control" placeholder="Password (only for Nickname)" name="pass" max="32">
 			<?php echo $unban['33']; ?>
 			<select name='buy' class='form-control' style='width: 130px;'>
 				<?php while($row = $result->fetch_object()): $row->price /= 100; ?>

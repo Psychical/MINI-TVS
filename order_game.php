@@ -13,7 +13,7 @@
 
 		echo "Choose country: ";
 		while($row = $fl->fetch_object())
-			echo "<a href='./order_game.php?p=ovip&lang=".$row->prefix."'>".strtoupper($row->prefix)." <img src='img/flags/".$row->prefix.".gif' border='0'></a> ";
+			echo "<a href='./order_game.php?p=o".$order."&lang=".$row->prefix."'>".strtoupper($row->prefix)." <img src='img/flags/".$row->prefix.".gif' border='0'></a> ";
 
 		echo "<br/><br/>";
 
