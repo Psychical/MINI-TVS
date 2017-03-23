@@ -1,15 +1,13 @@
 <?php
 include('config.php');
 
-if(is_dir('install'))
+$_SERVER['SCRIPT_FILENAME'] = substr($_SERVER['SCRIPT_FILENAME'], 0, strlen($_SERVER['SCRIPT_FILENAME'])-9);
+$filename = $_SERVER['SCRIPT_FILENAME'].'/install';
+
+if(file_exists($filename))
 {
-	?>
-	<meta http-equiv="refresh" content="5; url=./install">
-    <div class="alert alert-danger" style="width: 80%; margin: 0 auto; margin-top: 25px;">
-		Aptikta <a href='./install'>install</a> direktorija, jei sistema neįrašyta paspauskite ant prieš tai buvusios nuorodos, jei sistema įrašyta, ištrinkite <b>/install</b> direktoriją!
-	</div>
-	<?php
-	exit;
+	echo '<meta http-equiv="refresh" content="0; url=./install">';
+    die("Aptiktas <a href='./install'>install</a>, jei sistema ne&#303;ra&#353;yta paspauskite ant prie&#353; tai buvusios nuorodos, ta&#269;iau, jie sistema &#303;ra&#353;yta, i&#353;trinkit&#281; <a href='install.php'>install.php</a> fail&#261; arba j&#303; pervadinkite!");
 }
 
 $mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbdata);
@@ -35,7 +33,7 @@ if($config->num_rows > 0)
 	while($obj = $config->fetch_object()) { $objs[$obj->id] = $obj->value; }
 	extract($objs, EXTR_OVERWRITE);
 
-	$version = "5.6.9";
+	$version = "5.4.1";
 	/*==================NELYSTI==================*/
 
 	//WEB admin name/pass
@@ -98,5 +96,21 @@ function get_acces_makro($mysqli, $name)
 	$result = $mysqli->query("SELECT * FROM `unban_order_prvilegies` WHERE `name` = '".$name."'")->fetch_object();
 	
 	return $result->priv;
+}
+
+function randomPassword($lenght = 8)
+{
+    $pass = array(); //remember to declare $pass as an array
+	
+    $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+	
+    for ($i = 0; $i < $lenght; $i++)
+	{
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
+    }
+	
+    return implode($pass); //turn the array into a string
 }
 ?>
