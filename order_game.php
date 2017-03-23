@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Privielgijų pirkimas žaidime</title>
+		<title>Privilegijų pirkimas žaidime</title>
 	</head>
 	<body>
 		<?php
@@ -60,6 +60,5 @@ function content_text($text, $key, $nr, $price, $price_type, $priv_time)
 	return $text;
 }
 
-$result->close();
 $mysqli->close();
 ?>
