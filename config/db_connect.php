@@ -1,13 +1,15 @@
 <?php
 include('config.php');
 
-$_SERVER['SCRIPT_FILENAME'] = substr($_SERVER['SCRIPT_FILENAME'], 0, strlen($_SERVER['SCRIPT_FILENAME'])-9);
-$filename = $_SERVER['SCRIPT_FILENAME'].'/install';
-
-if(file_exists($filename))
+if(is_dir('install'))
 {
-	echo '<meta http-equiv="refresh" content="0; url=./install">';
-    die("Aptiktas <a href='./install'>install</a>, jei sistema ne&#303;ra&#353;yta paspauskite ant prie&#353; tai buvusios nuorodos, ta&#269;iau, jie sistema &#303;ra&#353;yta, i&#353;trinkit&#281; <a href='install.php'>install.php</a> fail&#261; arba j&#303; pervadinkite!");
+	?>
+	<meta http-equiv="refresh" content="5; url=./install">
+    <div class="alert alert-danger" style="width: 80%; margin: 0 auto; margin-top: 25px;">
+		Aptikta <a href='./install'>install</a> direktorija, jei sistema neįrašyta paspauskite ant prieš tai buvusios nuorodos, jei sistema įrašyta, ištrinkite <b>/install</b> direktoriją!
+	</div>
+	<?php
+	exit;
 }
 
 $mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbdata);
