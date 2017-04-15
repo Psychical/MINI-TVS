@@ -9,7 +9,7 @@
 		require_once('WebToPay.php');
 		
 		$id = (int) $_POST['buy'];
-		$orderid = $_POST['username'];
+		$orderid = ((strlen($_POST['nick'])) ? $_POST['nick'] : $ip);
 		
 		$result = $mysqli->query("SELECT * FROM `unban_makro_types` WHERE `id` = '".$id."'");
 		
