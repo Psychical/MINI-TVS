@@ -46,7 +46,10 @@ if(isset($_COOKIE["unban_loged"]))
 			</tr>
 	</table>
 	<small>
-	<font color="red">*</font> Norint, kad rodytų žaidėjų sąrašą, reikia į adreso vietą įrašyti "<b>./index.php?p=list</b>"
+	<ul><b>PAPILDOMOS NUORODOS:</b>
+	<li><b>./index.php?p=list</b> - Žaidėjų sąrašas
+	<li><b>./index.php?p=back</b> - Privilegijų susigrąžinimas
+	</ul>
 	</small>
 	<hr />
 	<h3 style="margin-top: -20px;"><u>ESAMOS NUORODOS</u></h3>

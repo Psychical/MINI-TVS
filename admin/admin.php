@@ -4,8 +4,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<?php include('../config/db_connect.php'); $conn_f = false; $error = ""; ?>
 		<title>Administracijos panelė</title>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
-		<script src="http://malsup.github.com/jquery.form.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+		<script src="jquery.form.js"></script>
 		<script src="../jquery.cookie.js"></script>
 		<script src="admin.js"></script>
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" media="screen" />

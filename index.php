@@ -63,6 +63,7 @@
 					switch($p[0])
 					{
 						case 'l': include('includes/olist.php'); break;
+						case 'b': include('includes/oback.php'); break;
 						case 'o': include('includes/order.php'); break;
 						default: include('includes/main.php'); break;
 					}
