@@ -13,6 +13,7 @@ if(is_dir('install'))
 }
 
 $mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbdata);
+$mysqli->query("SET NAMES utf8");
 if(empty($dbhost_amx) && empty($dbuser_amx) && empty($dbpass_amx) && empty($dbdata_amx)) { $mysqli_amx = $mysqli; }
 else { $mysqli_amx = new mysqli($dbhost_amx, $dbuser_amx, $dbpass_amx, $dbdata_amx); }
 
