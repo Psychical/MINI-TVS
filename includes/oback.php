@@ -16,12 +16,9 @@ if(!$f_page)
 </div>
 
 <?php 
-if(isset($_POST['submit'], $_POST['old_ip'], $_POST['phone'], $_POST['new_ip'], $_POST['bdate']))
-{
-	if(filter_var($_POST['old_ip'], FILTER_VALIDATE_IP))
-	{
-		if(filter_var($_POST['new_ip'], FILTER_VALIDATE_IP))
-		{
+if(isset($_POST['submit'], $_POST['old_ip'], $_POST['phone'], $_POST['new_ip'], $_POST['bdate'])):
+	if(filter_var($_POST['old_ip'], FILTER_VALIDATE_IP)):
+		if(filter_var($_POST['new_ip'], FILTER_VALIDATE_IP)):
 			if($result = $mysqli->prepare("SELECT `created` FROM `amx_amxadmins` WHERE `username` = ? AND `nr` = ?")):
 				$result->bind_param("ss", $_POST['old_ip'], $_POST['phone']); $result->execute(); $result->store_result();
 
@@ -32,7 +29,7 @@ if(isset($_POST['submit'], $_POST['old_ip'], $_POST['phone'], $_POST['new_ip'], 
 							
 						?>
 						<br />
-						<div class="alert alert-danger">
+						<div class="alert alert-success">
 							Privilegijos buvo <b>sėkmingai</b> perkeltos ant <?php echo $_POST['new_ip']; ?> adreso.
 						</div>
 						<?php
@@ -60,33 +57,21 @@ if(isset($_POST['submit'], $_POST['old_ip'], $_POST['phone'], $_POST['new_ip'], 
 				</div>
 				<?php
 			endif;
-		}
-		else
-		{
+		else:
 			?>
 			<br />
 			<div class="alert alert-danger">
 				<b>KLAIDA!</b> Neteisingai įvestas naujas IP!
 			</div>
 			<?php
-		}
-	}
-	else
-	{
+		endif;
+	else:
 		?>
 		<br />
 		<div class="alert alert-danger">
 			<b>KLAIDA!</b> Neteisingai įvestas senas IP!
 		</div>
 		<?php
-	}
-}
-else {
-	?>
-	<br />
-	<div class="alert alert-danger">
-		<b>KLAIDA!</b> Kažkas ne taip...
-	</div>
-	<?php
-}
+	endif;
+endif;
 ?>
