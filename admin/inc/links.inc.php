@@ -49,6 +49,7 @@ if(isset($_COOKIE["unban_loged"]))
 	<ul><b>PAPILDOMOS NUORODOS:</b>
 	<li><b>./index.php?p=list</b> - Žaidėjų sąrašas
 	<li><b>./index.php?p=back</b> - Privilegijų susigrąžinimas
+	<li><b>./index.php?p=servers</b> - Serverių sąrašas
 	</ul>
 	</small>
 	<hr />

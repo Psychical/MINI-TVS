@@ -34,7 +34,7 @@
 				<b>Navigacija</b>
 				</div>
 				<div class="panel-body">
-					<?php $menu_select = $mysqli->query("SELECT * FROM `unban_links` WHERE (`lang` = '".$s."' OR `lang` = '*') AND `show` = '1' ORDER BY `sort_place` ASC"); ?>
+					<?php $menu_select = $mysqli->query("SELECT * FROM `unban_links` WHERE (`lang` = '".$s."' OR `lang` = '*') AND `show` = '1' ORDER BY `sort_place` ASC");  ?>
 					<ul class="nav nav-pills nav-stacked" style="text-transform: uppercase;">
 						<?php if(addslashes($_COOKIE["unban_loged"])): ?>
 							<li role="presentation" class="active"><a href="admin/admin.php">Administravimas</a></li>
@@ -62,6 +62,7 @@
 				<?php 
 					switch($p[0])
 					{
+						case 's': include('includes/oserv.php'); break;
 						case 'l': include('includes/olist.php'); break;
 						case 'b': include('includes/oback.php'); break;
 						case 'o': include('includes/order.php'); break;
