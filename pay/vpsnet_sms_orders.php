@@ -63,7 +63,7 @@ if(checkTransaction($_GET['vps_transaction'], $_GET['vps_orderid'], $_GET['vps_s
 				$rst_v = $rst->fetch_object();
 				
 				$timeleft = time() + ($sms_price->priv_time * 24 * 60 * 60);
-				$mysqli_amx->query("INSERT INTO ".$amxbans_prefix."_amxadmins (`username`, `access`, `flags`, `nickname`, `ashow`, `created`, `expired`, `nr`, `days`, `steamid`) VALUES ('".$sms_ip."', '".$rst_v->priv."', 'de', '".$sms_ip."', '0', '".time()."', '".$timeleft."', '".$response['from']."', '".$sms_price->priv_time."', '".$sms_ip."') ");
+				$mysqli_amx->query("INSERT INTO ".$amxbans_prefix."_amxadmins (`username`, `access`, `flags`, `nickname`, `ashow`, `created`, `expired`, `nr`, `days`, `steamid`) VALUES ('".$sms_ip."', '".$rst_v->priv."', 'de', '".$sms_ip."', '0', '".time()."', '".$timeleft."', '".$nr."', '".$sms_price->priv_time."', '".$sms_ip."') ");
 				$lastid = $mysqli_amx->insert_id;
 
 				if($mysqli_amx->query("SELECT * FROM `".$amxbans_prefix."_admins_servers`"))
