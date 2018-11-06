@@ -14,17 +14,17 @@
 		
 		$url = $_POST['url'];
 		$name = $_POST['name'];
-		$show = $_POST['show'];
+		$show = (int) $_POST['show'];
 		$lang = $_POST['lang'];
-		$sort_place = $_POST['sort_place'];
-		$show_number = $_POST['show_number'];
+		$sort_place = (int) $_POST['sort_place'];
+		$show_number = (int) $_POST['show_number'];
 		
 		if(empty($lang)) { $error = "Nepasirinkote kalbos!<br />"; }
 		else if(empty($name)) { $error = "Neįrašėte pavadinimo!<br />"; }
 		else if(empty($url)) { $error = "Neįrašėte URL!<br />"; }
 		else
 		{
-			$mysqli->query("INSERT INTO `unban_links` VALUES ('', '".$url."', '".$name."', '".$show."', '".$lang."', '".$sort_place."', '".$show_number."')");
+			$mysqli->query("INSERT INTO `unban_links` (`url`, `name`, `show`, `lang`, `sort_place`, `show_num`) VALUES ('".$url."', '".$name."', '".$show."', '".$lang."', '".$sort_place."', '".$show_number."')");
 			unset($_POST);
 			header("Location: ./?action=links");
 		}

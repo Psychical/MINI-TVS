@@ -1,6 +1,5 @@
 <?php
 include "../config/db_connect.php";
-include('../admin/ajax/rcon_hl_net.php');
 
 if(checkTransaction($_GET['vps_transaction'], $_GET['vps_orderid'], $_GET['vps_status'], $_GET['vps_country'], $_GET['vps_sum'], $vpsnet_systems_pass))
 {
@@ -77,7 +76,7 @@ if(checkTransaction($_GET['vps_transaction'], $_GET['vps_orderid'], $_GET['vps_s
 						{
 							$ftch = $result->fetch_object();
 							
-							$mysqli_amx->query("INSERT INTO `".$amxbans_prefix."_admins_servers` (`admin_id`, `server_id`, `use_static_bantime`) VALUES ('".$lastid."', '".$ftch->id."', 'no')");
+							$mysqli_amx->query("INSERT INTO `".$amxbans_prefix."_admins_servers` (`admin_id`, `server_id`, `custom_flags`, `use_static_bantime`) VALUES ('".$lastid."', '".$ftch->id."', '', 'no')");
 						}
 					}
 				}
@@ -89,7 +88,6 @@ if(checkTransaction($_GET['vps_transaction'], $_GET['vps_orderid'], $_GET['vps_s
 				echo "error Nerasots privilegijos!"; //nerastos privilegiju tipas
 			}
 		}
-		//reload_admins($mysqli_amx);
 	}
 }
 else {

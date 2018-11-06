@@ -2,7 +2,7 @@
 include 'config/db_connect.php';
 
 if($_GET['lang']):
-	$_SESSION["lang"] = $_GET['lang'];
+	$_SESSION["lang"] = substr(addslashes($_GET['lang']), 0, 3);
 	header("Location: ./");
 endif;
 

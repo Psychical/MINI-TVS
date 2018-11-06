@@ -24,7 +24,7 @@
 			if($tikr->num_rows):
 				$error = "<font color='red'>Šios privilegijos jau pridėtos!</font>";
 			else:
-				$mysqli->query("INSERT INTO `unban_order_prvilegies` VALUES ('', '".$priv."', '".$name."')");
+				$mysqli->query("INSERT INTO `unban_order_prvilegies` (`priv`, `name`) VALUES ('".$priv."', '".$name."')");
 			endif;
 		endif;
 	endif;

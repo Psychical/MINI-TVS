@@ -26,7 +26,7 @@ if(isset($_POST['submit'])):
 		if($result->num_rows):
 			$error = "Toks makro mokėjimas jau egzistuoja!";
 		else:
-			$mysqli->query("INSERT INTO `unban_makro_types` VALUES ('', '".$privs."', '".$price."', '".$time."')");
+			$mysqli->query("INSERT INTO `unban_makro_types` (`priv_type`, `price`, `lenght`) VALUES ('".$privs."', '".$price."', '".$time."')");
 			
 			header("Location: ./?action=makro_types");
 		endif;

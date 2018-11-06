@@ -18,7 +18,7 @@ if(isset($_POST['submit'])):
 	$sms_type = $_POST['sms_type'];
 	$price_type = strtoupper($_POST['price_type']);
 	$message_type = strtolower($_POST['message_type']);
-	$priv_time = $_POST['priv_time'];
+	$priv_time = (int) $_POST['priv_time'];
 	$privs = $_POST['priv'] ? $_POST['priv'] : "unban";
 	
 	if(empty($prefix)):
@@ -41,10 +41,12 @@ if(isset($_POST['submit'])):
 		$error = "Neįrašėte privilegijų!<br />"; 
 	else:
 		$result = $mysqli->query("SELECT * FROM `unban_sms_config` WHERE `key` = '$key' AND `lang` = '$prefix' AND `message_type` = '$message_type'");
+		
+		
 		if($result->num_rows):
 			$error = "<font color='red'>Šis raktažodis jau egzistuoja!</font><br />";
-		elseif(!$result->num_rows):
-			$mysqli->query("INSERT INTO `unban_sms_config` VALUES ('', '$prefix', '$key', '$number', '$price', '$sms_type', '$price_type', '$message_type', '$priv_time', '$privs')");
+		else:
+			$mysqli->query("INSERT INTO `unban_sms_config` (`lang`, `key`,`number`, `price`, `sms_type`, `price_type`, `message_type`, `priv_time`, `privs`) VALUES ('$prefix', '$key', '$number', '$price', '$sms_type', '$price_type', '$message_type', '$priv_time', '$privs')");
 			
 			if($message_type != "unban"):
 				$tikr = $mysqli->query("SELECT * FROM `unban_links` WHERE `lang` = '".$prefix."' AND `url` LIKE '%".$message_type."'");
@@ -53,8 +55,9 @@ if(isset($_POST['submit'])):
 					$mysqli->query("INSERT INTO `unban_links` (`url`, `name`, `show`, `lang`, `sort_place`) VALUES ('./index.php?p=o".$message_type."', '".strtoupper($message_type)." pirkimas', '1', '$prefix', '9')");
 				endif;
 			endif;
+			print_r($mysqli);
 			
-			header("Location: ./?action=keys");
+			//header("Location: ./?action=keys");
 		endif;
 	endif;
 endif; ?>

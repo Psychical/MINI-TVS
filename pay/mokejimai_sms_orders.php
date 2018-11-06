@@ -3,7 +3,6 @@ require_once('mokejimai_webtopay.php');
 require_once('geoiploc.php');
 
 include('../config/db_connect.php');
-include('../admin/ajax/rcon_hl_net.php');
 
 $get = removeQuotes($_POST);
 
@@ -87,19 +86,18 @@ try
 				}
 				
 				$lastid = $mysqli_amx->insert_id;
-				
+
 				if($mysqli_amx->query("SELECT * FROM `".$amxbans_prefix."_admins_servers`"))
 				{
 					while($row = $servers_lst->fetch_object())
 					{						
 						$local_ips = gethostbyname($row->ip).":".$row->port;
 						$result = $mysqli_amx->query("SELECT * FROM `amx_serverinfo` WHERE `address` = '".$local_ips."' LIMIT 1");
-						
 						if($result->num_rows)
 						{
 							$ftch = $result->fetch_object();
 							
-							$mysqli_amx->query("INSERT INTO `".$amxbans_prefix."_admins_servers` (`admin_id`, `server_id`, `use_static_bantime`) VALUES ('".$lastid."', '".$ftch->id."', 'no')");
+							$mysqli_amx->query("INSERT INTO `".$amxbans_prefix."_admins_servers` (`admin_id`, `server_id`, `custom_flags`, `use_static_bantime`) VALUES ('".$lastid."', '".$ftch->id."', '', 'no')");
 						}
 					}
 				}
@@ -119,7 +117,6 @@ try
 					echo "OK Kazkas ne taip. Negali irasyti.";
 			}
 		}
-		reload_admins($mysqli_amx);
 	}
 	else
 	{

@@ -14,7 +14,7 @@ if(isset($_POST['submit']) || isset($_POST['submit_x'])):
 	endforeach;
 	
 	$ip = $_POST['ip'];
-	$port = $_POST['port'];
+	$port = (int) $_POST['port'];
 	$rcon = $_POST['rcon'];
 	
 	if(empty($ip)):
@@ -38,7 +38,7 @@ if(isset($_POST['submit']) || isset($_POST['submit_x'])):
 			if($tikr->num_rows):
 				$error = "Toks serveris jau egzistuoja!";
 			else:
-				$mysqli->query("INSERT INTO `unban_servers` VALUES ('', '".$ip."', '".$port."', '".$rcon."')");
+				$mysqli->query("INSERT INTO `unban_servers` (`ip`, `port`, `rcon`) VALUES ('".$ip."', '".$port."', '".$rcon."')");
 			
 				header("Location: ./?action=servers");
 			endif;
