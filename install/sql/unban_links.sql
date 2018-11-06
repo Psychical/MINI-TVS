@@ -9,4 +9,8 @@ CREATE TABLE `unban_links` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci;
 
-INSERT INTO `unban_links` VALUES ('1', './', 'Home', '1', '*', '1', '1');
+INSERT INTO `unban_links` (`id`, `url`, `name`, `show`, `lang`, `sort_place`, `show_num`) VALUES
+(1, './', 'Unban', '1', '*', 1, '0'),
+(2, './index.php?p=list', 'Privileges list', '1', '*', 2, '0'),
+(3, './index.php?p=back', 'Privileges recovery', '1', '*', 3, '0'),
+(4, './index.php?p=servers', 'Server list', '1', '*', 4, '0');

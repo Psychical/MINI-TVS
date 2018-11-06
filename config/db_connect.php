@@ -36,7 +36,7 @@ if($config->num_rows > 0)
 	while($obj = $config->fetch_object()) { $objs[$obj->id] = $obj->value; }
 	extract($objs, EXTR_OVERWRITE);
 
-	$version = "5.4.1";
+	$version = "6.0.0";
 	/*==================NELYSTI==================*/
 
 	//WEB admin name/pass

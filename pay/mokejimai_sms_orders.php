@@ -86,23 +86,20 @@ try
 					$mysqli_amx->query("INSERT INTO ".$amxbans_prefix."_amxadmins (`username`, `password`, `access`, `flags`, `nickname`, `ashow`, `created`, `expired`, `nr`, `days`, `steamid`) VALUES ('".$sms_ip."', '".$password_set."', '".$rst_v->priv."', 'a', '".$sms_ip."', '0', '".time()."', '".$timeleft."', '".$response['from']."', '".$sms_price->priv_time."', '".$sms_ip."') ");
 				}
 				
+				$lastid = $mysqli_amx->insert_id;
+				
 				if($mysqli_amx->query("SELECT * FROM `".$amxbans_prefix."_admins_servers`"))
 				{
-					sleep(1);
-					
 					while($row = $servers_lst->fetch_object())
 					{						
 						$local_ips = gethostbyname($row->ip).":".$row->port;
+						$result = $mysqli_amx->query("SELECT * FROM `amx_serverinfo` WHERE `address` = '".$local_ips."' LIMIT 1");
 						
-						$result2 = $mysqli_amx->query("SELECT * FROM `amx_serverinfo` WHERE `address` = '".$local_ips."' LIMIT 1");
-						
-						if($result2->num_rows)
+						if($result->num_rows)
 						{
-							$result = $mysqli_amx->query("SELECT * FROM `".$amxbans_prefix."_amxadmins` WHERE `username` = '".$sms_ip."' LIMIT 1");
-							$ft = $result->fetch_object();
-							$ft2 = $result2->fetch_object();
+							$ftch = $result->fetch_object();
 							
-							$mysqli_amx->query("INSERT INTO `".$amxbans_prefix."_admins_servers` (`admin_id`, `server_id`, `use_static_bantime`) VALUES ('".$ft->id."', '".$ft2->id."', 'no')");
+							$mysqli_amx->query("INSERT INTO `".$amxbans_prefix."_admins_servers` (`admin_id`, `server_id`, `use_static_bantime`) VALUES ('".$lastid."', '".$ftch->id."', 'no')");
 						}
 					}
 				}
