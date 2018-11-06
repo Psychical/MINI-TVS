@@ -1,1 +1,0 @@
-ALTER TABLE  `unban_config` ADD  `main_fl` VARCHAR( 11 ) NOT NULL;
