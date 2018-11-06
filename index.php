@@ -2,17 +2,17 @@
 include 'config/db_connect.php';
 
 if($_GET['lang']):
-	$_SESSION["lang"] = substr(addslashes($_GET['lang']), 0, 3);
+	$_SESSION["tvs_lang"] = substr(addslashes($_GET['lang']), 0, 3);
 	header("Location: ./");
 endif;
 
-if(file_exists('lang/'.addslashes($_SESSION["lang"]).'.php')):
-	include 'lang/'.addslashes($_SESSION["lang"]).'.php';
+if(file_exists('lang/'.$_SESSION["tvs_lang"].'.php')):
+	include 'lang/'.$_SESSION["tvs_lang"].'.php';
 else:
 	include 'lang/'.$main_lang.'.php';
 endif;
 
-$sLang = $_SESSION["lang"] ? $_SESSION["lang"] : $main_lang;
+$sLang = $_SESSION["tvs_lang"] ? $_SESSION["tvs_lang"] : $main_lang;
 
 $f_page = 1;
 $sPage = $_GET['p'];
