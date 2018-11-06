@@ -9,7 +9,6 @@ endif;
 if(file_exists('lang/'.addslashes($_SESSION["lang"]).'.php')):
 	include 'lang/'.addslashes($_SESSION["lang"]).'.php';
 else:
-	$_SESSION["lang"] = $main_lang;
 	include 'lang/'.$main_lang.'.php';
 endif;
 
