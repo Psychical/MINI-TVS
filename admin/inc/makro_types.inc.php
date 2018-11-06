@@ -1,70 +1,92 @@
+<?php if(MAIN_ADMIN): ?>
 <?php
-if(isset($_COOKIE["unban_loged"]))
-{
-	$id = (int) addslashes($_GET['id']);
+if(isset($_GET['del'])):
+	$mysqli->query("DELETE FROM `unban_makro_types` WHERE `id` = '".((int)$_GET['del'])."'");
+	header("Location: ./?action=makro_types");
+endif;
+
+if(isset($_POST['submit'])):
+	foreach($_POST as $key => $value):
+		$_POST[$key] = addslashes($_POST[$key]);
+	endforeach;
 	
-	$result_type = $mysqli->query("SELECT * FROM `unban_messages_types` WHERE `id` = '".$id."'");
+	$privs = $_POST['priv'];
+	$price = $_POST['price'];
+	$time = $_POST['time'];
 	
-	$typeFtc = $result_type->fetch_object();
-	
-	$id = $typeFtc->id ? $typeFtc->id : 0;
-	$type = $typeFtc->type ? $typeFtc->type : "";
-	$page_content = $typeFtc->page_content ? $typeFtc->page_content : "";
-	$lang = $typeFtc->lang ? $typeFtc->lang : "";
-	
-	$page_content = str_replace("<br />", "\n", $page_content);
-	
-	function select($f, $s)
-	{
-		if($f == $s)
-			return "selected";
+	if(empty($privs)):
+		$error = "Neįrašėte prefix!<br />";
+	elseif(empty($price)):
+		$error = "Neįrašėte privilegijų kainos!<br />";
+	elseif(empty($time)):
+		$error = "Neįrašėte privilegijų laiko!<br />";
+	else:
+		$result = $mysqli->query("SELECT * FROM `unban_makro_types` WHERE `priv_type` = '".$privs."' AND `price` = '".$price."'");
 		
-		return "";
-	}
+		if($result->num_rows):
+			$error = "Toks makro mokėjimas jau egzistuoja!";
+		else:
+			$mysqli->query("INSERT INTO `unban_makro_types` VALUES ('', '".$privs."', '".$price."', '".$time."')");
+			
+			header("Location: ./?action=makro_types");
+		endif;
+	endif;
+endif;
+?>
 	
-	?>
-	<script src='bbeditor/jquery.bbcode.js' type='text/javascript'></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#page_content").bbcode();
-		});
-	</script>
-	<h3><u>MAKRO VALDYMAS</u></h3>
-	<table style="width:40%; margin: 0 auto;">
-		<tbody>
-			<tr>
-				<td>
-					<form action="ajax/makro_types.php" method="POST" id='form2'>
-					
-						<div class="form-group">
-							<label for="exampleInputEmail1">Privilegijos</label>
-							<select class="form-control" name="priv">
-								<?php
-								while($rfl = $priv->fetch_object())
-									echo '<option value="'.$rfl->name.'">'.strtoupper($rfl->name).' ('.$rfl->priv.')</option>';
-								?>
-							</select>
-						</div>
-						
-						<div class="form-group">
-							<label for="exampleInputEmail1">SMS Kaina (centais)</label>
-							<input type="number" class="form-control" name="price" value="100" min="100">
-						</div>
-						
-						<div class="form-group">
-							<label for="exampleInputEmail1">Privilegijų trukmė (dienomis)</label>
-							<input type="number" class="form-control" name="time" value="1" min="1">
-						</div>
-						
-						<input type="hidden" name="id" value="<?php echo $id; ?>">
-						<input type="submit" name="submit" class="form-control" value="Pridėti" id='add'>
-					</form>
-					<div id='target2' style='color: red; text-align: center;'></div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<hr />
-	<h3 style="margin-top: -20px;"><u>ESAMI MAKRO</u></h3>
-	<div id='comments-box7'></div>
-<?php } ?>
+	<?php if($error): ?><div class="alert alert-danger"><?php echo $error; ?></div> <?php endif; ?>
+	<div class="row">
+		<div class="col-md-4">	
+			<form method="POST">
+				<div class="form-group">
+					<label for="exampleInputEmail1">PRIVILEGIJOS</label>
+					<select class="form-control" name="priv">
+						<?php while($rfl = $priv->fetch_object()): ?>
+							<option value="<?php echo $rfl->name; ?>"><?php echo strtoupper($rfl->name); ?> (<?php echo $rfl->priv; ?>)</option>
+						<?php endwhile; ?>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="exampleInputEmail1">SMS KAINA (centais)</label>
+					<input type="number" class="form-control" name="price" value="100">
+				</div>
+				
+				<div class="form-group">
+					<label for="exampleInputEmail1">PRIVILEGIJŲ TRUKMĖ (dienomis)</label>
+					<input type="number" class="form-control" name="time" value="1" min="1">
+				</div>
+				
+				<div class="form-group">
+					<input type="submit" name="submit" class="btn btn-success" value="PRIDĖTI" style="width: 100%;">
+				</div>
+				
+			</form>
+		</div>
+		<div class="col-md-8">
+			<table class="table">
+				<thead>
+					<th>#</th>
+					<th>PRIVILEGIJOS</th>
+					<th class="text-center">KAINA</th>
+					<th class="text-center">TRUKMĖ</th>
+					<th></th>
+				</thead>
+
+				<?php while($row = $makro_l->fetch_object()): ?>
+					<tr>
+					<td><?php echo $i++; ?></td>
+					<td><?php echo strtoupper($row->priv_type); ?></td>
+					<td class="text-center"><?php echo $row->price/100; ?> EUR</td>
+					<td class="text-center"><?php echo $row->lenght; ?> d.</td>
+					<td>
+						<a href="./?action=makro_types&del=<?php echo $row->id; ?>">
+							<img src='../img/x.png'>
+						</a>
+					</td>
+					</tr>
+				<?php endwhile; ?>
+			</table>
+		</div>
+	</div>
+<?php endif; ?>
