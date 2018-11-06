@@ -5,8 +5,7 @@ $order = addslashes($_GET['p']);
 
 if($sms_status)
 {
-	$s = addslashes($_SESSION["tvs_lang"]) ? addslashes($_SESSION["tvs_lang"]) : $main_lang;
-	$result = $mysqli->query("SELECT * FROM `unban_sms_config` WHERE `message_type` = '".substr($order, 1)."' AND `lang` = '".$s."'");
+	$result = $mysqli->query("SELECT * FROM `unban_sms_config` WHERE `message_type` = '".substr($order, 1)."' AND `lang` = '".$sLang."'");
 
 	$in_o_c = $mysqli_amx->query("SELECT `access` FROM `amx_amxadmins` WHERE `username` = '".$_SERVER['REMOTE_ADDR']."'");
 		
@@ -19,7 +18,7 @@ if($sms_status)
 	{
 		$msg_info = $result->fetch_object();
 		
-		$get_content = $mysqli->query("SELECT * FROM `unban_messages_types` WHERE `type` = '".substr($order, 1)."' AND `lang` = '".$s."'");
+		$get_content = $mysqli->query("SELECT * FROM `unban_messages_types` WHERE `type` = '".substr($order, 1)."' AND `lang` = '".$sLang."'");
 		$fetch_get_content = $get_content->fetch_object();
 	
 		echo content_text($fetch_get_content->page_content, $msg_info->key, $msg_info->number, $msg_info->price, $msg_info->price_type, $msg_info->priv_time);
