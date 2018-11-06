@@ -5,7 +5,7 @@ $order = addslashes($_GET['p']);
 
 if($sms_status)
 {
-	$s = addslashes($_SESSION["lang"]) ? addslashes($_SESSION["lang"]) : $main_lang;
+	$s = addslashes($_SESSION["tvs_lang"]) ? addslashes($_SESSION["tvs_lang"]) : $main_lang;
 	$result = $mysqli->query("SELECT * FROM `unban_sms_config` WHERE `message_type` = '".substr($order, 1)."' AND `lang` = '".$s."'");
 
 	$in_o_c = $mysqli_amx->query("SELECT `access` FROM `amx_amxadmins` WHERE `username` = '".$_SERVER['REMOTE_ADDR']."'");
