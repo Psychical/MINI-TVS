@@ -13,7 +13,7 @@
 		{	
 			echo $unban['4']." <b><span style='color: red;'>".$unban['5']."</span></b><br><br>";
 			
-			$sms = $mysqli->query("SELECT * FROM `unban_sms_config` WHERE `lang` = '".$s."' AND `message_type` = 'unban'");
+			$sms = $mysqli->query("SELECT * FROM `unban_sms_config` WHERE `lang` = '".$sLang."' AND `message_type` = 'unban'");
 
 			if($sms->num_rows)
 			{
