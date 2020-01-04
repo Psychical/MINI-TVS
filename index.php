@@ -3,7 +3,7 @@ include 'config/db_connect.php';
 
 if($_GET['lang']):
 	$_SESSION["tvs_lang"] = substr(addslashes($_GET['lang']), 0, 3);
-	header("Location: ./");
+	header("Location: ./?p=".$_GET['p']);
 endif;
 
 if(file_exists('lang/'.$_SESSION["tvs_lang"].'.php')):
@@ -82,6 +82,7 @@ $sPage = $_GET['p'];
 			</div>
 		</div>
 	</div>
+</body>
 </html>
 <?php
 $mysqli->close();

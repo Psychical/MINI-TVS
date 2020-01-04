@@ -55,7 +55,6 @@ if(isset($_POST['submit'])):
 					$mysqli->query("INSERT INTO `unban_links` (`url`, `name`, `show`, `lang`, `sort_place`) VALUES ('./index.php?p=o".$message_type."', '".strtoupper($message_type)." pirkimas', '1', '$prefix', '9')");
 				endif;
 			endif;
-			print_r($mysqli);
 			
 			//header("Location: ./?action=keys");
 		endif;
