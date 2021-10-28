@@ -40,51 +40,24 @@ if($makro_type == 1)
 		echo $unban['32'];
 		
 	if($result->num_rows > 0): ?>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
-		<script>
-		$(document).ready(function()
-		{
-			$('input').bind("change keyup", function()
-			{
-				var str = $('#nick').val();
-				
-				if(/^[a-zA-Z0-9-]*$/.test(str) == false)
-				{
-					$('#nick').val("" + str.substring(0, str.length - 1) + "");
-				}
-				
-				var str = $('#pass').val();
-				if(/^[a-zA-Z0-9-#]*$/.test(str) == false)
-				{
-					$('#pass').val("" + str.substring(0, str.length - 1) + "");
-				}
-			});
-			
-			$("input[name=type]").change(function()
-			{
-				if($("input:radio[name=type]:checked").val() == 'IP')
-				{
-					$("#ip").css("display", "block");
-					$("#nick").css("display", "none");
-					$("#pass").css("display", "none");
-				}
-				else
-				{
-					$("#ip").css("display", "none");
-					$("#nick").css("display", "block");
-					$("#pass").css("display", "block");
-				}
-			});
-		});
-		
-		</script>
-		
 		<form action="./pay/makro/index.php" method="POST">
 		<?php echo $unban['32']; ?>
-		<input type="radio" name="type" value="IP" checked>IP/NICK<input type="radio" name="type" value="NAME"><br />
-		<input type="text" class="form-control" placeholder="<?php echo $ip; ?>" id="ip" style="width: 130px; display: block;" disabled>
-		<input type="text" class="form-control" placeholder="Nickname" id="nick" name="nick" style="width: 130px; display: none;" max="32">
-		<input type="password" class="form-control" placeholder="Password" id="pass" name="pass" style="width: 130px; display: none;" max="32">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Nickname/IP Address or SteamID<br /> (<small>Your IP (maybe): <?php echo $_SERVER['REMOTE_ADDR']; ?></small>)</label>
+						<input type="text" name="nick" onkeyup="keyupFunction(this.id, this.value)" onfocus="keyupFunction(this.id, this.value)" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" class="form-control" autocomplete="off" required> 
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group" style="display: none;" id="pid">
+						<label>Password<br /> (<small>only FOR nickname</small>)</label>
+						<input type="text" id="pass" name="password" value="<?php echo isset($_POST['password']) ? "".$_POST['password']."" : ""; ?>" class="form-control" autocomplete="off" disabled> 
+					</div>
+				</div>
+			</div>
+			
+		
 		<?php echo $unban['33']; ?>
 		<select name='buy' class='form-control' style='width: 130px;'>
 		
@@ -96,7 +69,24 @@ if($makro_type == 1)
 		</select>
 		<br />
 		<input type='submit' class='btn btn-default' name='submit' value='<?php echo $unban['34']; ?>' />
-		</form> <?php
+		</form>
+
+		<script>
+		function keyupFunction(id, value) {
+			document.getElementById("pass").disabled = (ValidateIPaddress(value)) ? true : false;
+			document.getElementById("pass").required = (ValidateIPaddress(value)) ? false : true;
+			document.getElementById("pid").style.display = (ValidateIPaddress(value)) ? "none" : "block";
+		}
+		function ValidateIPaddress(ipaddress) 
+		{
+			if(/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress))
+				return true;
+			
+			return false;
+		}
+		</script>
+		
+		<?php
 	else:
 		echo $unban['31'];
 	endif;
