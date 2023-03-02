@@ -1,9 +1,9 @@
 <?php if(MAIN_ADMIN): ?>
 
 <div class="container">
-	<?php if($version < file_get_contents('http://rez.lt/unban/version.txt')): ?>
+	<?php if($version < file_get_contents('http://rez.lt/unban/version.txt', false, stream_context_create(array('http'=> array( 'timeout' => 1 ) )))): ?>
 		<div class="alert alert-danger"><b>DĖMESIO!</b> Aptiktas sistemos naujinys! Informacija <a href="https://github.com/Psychical/MINI-TVS">GitHub</a>.</div>
-	<?php endif;?>
+	<?php endif;  ?>
 	<div class="panel panel-primary">
 		<div class="panel-body">
 		<?php

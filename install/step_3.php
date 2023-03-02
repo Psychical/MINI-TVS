@@ -65,6 +65,7 @@ if($install_page)
 						}
 						else
 						{
+							
 							echo '<br /><div class="alert alert-success"><b>Sėkmingai</b> prisijungta prie duomenų bazės!</div>';
 							
 							if(!empty($_POST['host_amx']) && !empty($_POST['user_amx']) && !empty($_POST['data_amx']))
@@ -79,8 +80,14 @@ if($install_page)
 								}
 							}
 							
-							$result = $mysqli_amx->query("SELECT * FROM ".$_POST['prefix']."_bans");
-							$result1 = $mysqli_amx->query("SELECT * FROM ".$_POST['prefix']."_amxadmins");
+							$tbans = sprintf("%s_bans",$_POST['prefix']);
+							$tadmins = sprintf("%s_amxadmins", $_POST['prefix']);
+							$queryTemplate = "SELECT TABLE_NAME FROM  information_schema.TABLES WHERE TABLE_SCHEMA LIKE '".$_POST["data"]."' AND TABLE_TYPE LIKE 'BASE TABLE' AND TABLE_NAME = '%s'";
+							$result = $mysqli_amx->query(sprintf($queryTemplate, $tbans))->num_rows;
+							$result1 = $mysqli_amx->query(sprintf($queryTemplate, $tadmins))->num_rows;
+							
+
+
 							if($result && $result1)
 							{
 								echo '<div class="alert alert-success"><b>AMXBANS</b> sėkmingai rastas Jūsų duomenų bazėje!</div>';
