@@ -22,7 +22,7 @@ if(checkTransaction($_GET['vps_transaction'], $_GET['vps_orderid'], $_GET['vps_s
 
 		if(empty($sms_pId))
 		{
-			echo "error"; // Ne·vestas ID
+			echo "error"; // Ne√°vestas ID
 			exit();
 		}
 		else if($row)
@@ -33,12 +33,12 @@ if(checkTransaction($_GET['vps_transaction'], $_GET['vps_orderid'], $_GET['vps_s
 		else 
 		{
 			array($result);
-			echo "error"; // NÎra tokio id sistemoje
+			echo "error"; // N√´ra tokio id sistemoje
 		}
 	}
 }
 else
-	echo "error"; // ¡ fail‡ kreiptasi ne i vpsnet.lt serverio
+	echo "error"; // √Å fail√† kreiptasi ne i√∞ vpsnet.lt serverio
 
 function getKey($smsPrice, $keyword)
 {
@@ -70,7 +70,7 @@ function getKey($smsPrice, $keyword)
 
 function checkTransaction( $transaction, $orderid, $status, $country, $sum, $v_k_p)
 {
-	$t = md5("{$v_k_p}|{".$_SERVER['REMOTE_ADDR']."}|{$orderid}|{$status}|{$country}|{$sum}");
+	$t = hash("sha256", "{$v_k_p}|{".$_SERVER['REMOTE_ADDR']."}|{$orderid}|{$status}|{$country}|{$sum}", false);
 	if($transaction == $t) return true;
 	return false;
 }
