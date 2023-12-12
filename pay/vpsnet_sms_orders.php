@@ -50,7 +50,7 @@ if(checkTransaction($_GET['vps_transaction'], $_GET['vps_orderid'], $_GET['vps_s
 			}
 			else
 			{
-				echo "error Privilegijos nerastos!"; //nerastos privilegijos, kurias norima u˛dÎti
+				echo "error Privilegijos nerastos!"; //nerastos privilegijos, kurias norima u√æd√´ti
 			}
 		}
 		else
@@ -91,12 +91,12 @@ if(checkTransaction($_GET['vps_transaction'], $_GET['vps_orderid'], $_GET['vps_s
 	}
 }
 else {
-	echo "error Kreiptasi ne is VPSNET!"; // ¡ fail‡ kreiptasi ne i vpsnet.lt serverio
+	echo "error Kreiptasi ne is VPSNET!"; // √Å fail√† kreiptasi ne i√∞ vpsnet.lt serverio
 }
 
 function checkTransaction( $transaction, $orderid, $status, $country, $sum, $v_k_p)
 {
-	$t = md5("{$v_k_p}|{".$_SERVER['REMOTE_ADDR']."}|{$orderid}|{$status}|{$country}|{$sum}");
+	$t = hash("sha256", "{$v_k_p}|{".$_SERVER['REMOTE_ADDR']."}|{$orderid}|{$status}|{$country}|{$sum}", false);
 	if($transaction == $t)
 	{
 		return true;
