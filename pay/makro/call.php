@@ -46,7 +46,7 @@ try
 					{
 						$ftch = $result->fetch_object();
 						
-						$mysqli_amx->query("INSERT INTO `".$amxbans_prefix."_admins_servers` (`admin_id`, `server_id`, `use_static_bantime`) VALUES ('".$lastid."', '".$ftch->id."', 'no')");
+						$mysqli_amx->query("INSERT INTO `".$amxbans_prefix."_admins_servers` (`admin_id`, `server_id`, `custom_flags`, `use_static_bantime`) VALUES ('".$lastid."', '".$ftch->id."', '', 'no')");
 					}
 				}
 			}
